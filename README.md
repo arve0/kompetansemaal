@@ -12,7 +12,18 @@ kompetansemål er der brukt som *tags*.
 
 
 ## Status
-Appen er under utvikling og er ikke ferdig enda.
+Appen er under utvikling.
+
+
+## Dataressurser
+Vi bruker [grep], Utdanningsdirektoretats åpne datatjeneste. Se spesielt
+seksjonen om odata i [brukermanualen][grep manual]. Dataressursen er
+[tilgjengelig][udir service] som en [angular service].
+
+[grep]: http://grepwiki.udir.no
+[grep manual]: http://grepwiki.udir.no/images/1/1e/Brukermanual_for_Grep_soap_odata_rest.pdf
+[udir service]: src/app/components/udir/udir.service.js
+[angular service]: https://docs.angularjs.org/guide/services
 
 
 ## Sponsor
