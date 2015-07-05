@@ -6,13 +6,16 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr) {
+  function MainController($timeout, webDevTec, toastr, udir) {
     var vm = this;
 
     vm.awesomeThings = [];
     vm.classAnimation = '';
     vm.creationDate = 1435942195777;
     vm.showToastr = showToastr;
+    udir.getAll('Kompetansemål').then(function(data){
+      vm.km = data;
+    });
 
     activate();
 
