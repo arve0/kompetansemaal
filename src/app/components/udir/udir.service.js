@@ -8,7 +8,11 @@
   /** @ngInject */
   function udir($log, $http) {
     var baseUrl = 'http://data.udir.no/kl06/odata/';
-    var parameters = '?$format=json&$callback=JSON_CALLBACK';
+    var parameters = {
+      $callback: 'JSON_CALLBACK',
+      $format: 'json',
+      $filter: "(Status eq 'http://psi.udir.no/ontologi/status/publisert')",
+    };
 
     var service = {
       baseUrl: baseUrl,
@@ -20,7 +24,9 @@
 
     function getAll(endpoint) {
 
-      return $http.jsonp(baseUrl + endpoint + parameters)
+      return $http.jsonp(baseUrl + endpoint, {
+          params: parameters
+        })
         .then(getComplete)
         .catch(getFailed);
 

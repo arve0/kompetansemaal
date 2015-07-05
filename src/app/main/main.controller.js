@@ -13,8 +13,9 @@
     vm.classAnimation = '';
     vm.creationDate = 1435942195777;
     vm.showToastr = showToastr;
-    udir.getAll('Kompetansemål').then(function(data){
-      vm.km = data;
+    vm.udir = udir;
+    udir.getAll('Læreplan').then(function(data){
+      vm.lp = data;
     });
 
     activate();
