@@ -7,25 +7,25 @@
 
   /** @ngInject */
   function udir($log, $http) {
-    var baseUrl = 'http://data.udir.no/kl06/odata/';
-    var parameters = {
-      $callback: 'JSON_CALLBACK',
-      $format: 'json',
-      $filter: "(Status eq 'http://psi.udir.no/ontologi/status/publisert')",
-    };
+    var baseUrl = 'http://data.udir.no/kl06/';
 
     var service = {
       baseUrl: baseUrl,
-      parameters: parameters,
-      getAll: getAll
+      getOdata: getOdata,
+      getREST: getREST
     };
 
     return service;
 
-    function getAll(endpoint) {
+    function getOdata(endpoint) {
+      var params = {
+        $callback: 'JSON_CALLBACK',
+        $format: 'json',
+        $filter: "(Status eq 'http://psi.udir.no/ontologi/status/publisert')",
+      };
 
-      return $http.jsonp(baseUrl + endpoint, {
-          params: parameters
+      return $http.jsonp(baseUrl + 'odata/' + endpoint, {
+          params: params 
         })
         .then(getComplete)
         .catch(getFailed);
@@ -35,7 +35,27 @@
       }
 
       function getFailed(error) {
-        $log.error('XHR Failed for udir.\n' + angular.toJson(error.data, true));
+        $log.error('XHR Failed for udir.\n' + angular.toJson(error, true));
+      }
+    }
+
+    function getREST(endpoint) {
+      var corsproxy = 'http://crossorigin.me/';
+
+      return $http.get(corsproxy + baseUrl + endpoint, {
+          params: {
+            lang: 'nob'
+          }
+        })
+        .then(getComplete)
+        .catch(getFailed);
+
+      function getComplete(response) {
+        return response.data;
+      }
+
+      function getFailed(error) {
+        $log.error('XHR Failed for udir.\n' + angular.toJson(error, true));
       }
     }
   }
