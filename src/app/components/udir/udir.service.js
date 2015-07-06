@@ -25,7 +25,8 @@
       };
 
       return $http.jsonp(baseUrl + 'odata/' + endpoint, {
-          params: params 
+          params: params,
+          cache: true,
         })
         .then(getComplete)
         .catch(getFailed);
@@ -45,7 +46,8 @@
       return $http.get(corsproxy + baseUrl + endpoint, {
           params: {
             lang: 'nob'
-          }
+          },
+          cache: true,
         })
         .then(getComplete)
         .catch(getFailed);
