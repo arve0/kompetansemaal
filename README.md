@@ -13,6 +13,7 @@ kompetansemål er der brukt som *tags*.
 
 ## Status
 Appen er under utvikling.
+![](læreplaner.gif)
 
 
 ## Dataressurser
