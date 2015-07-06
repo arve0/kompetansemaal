@@ -12,7 +12,7 @@ kompetansemål er der brukt som *tags*.
 
 
 ## Status
-Appen er under utvikling.
+Appen er under utvikling. Prøv den [her](http://arve0.github.io/kompetansemaal/#/).
 ![](læreplaner.gif)
 
 
