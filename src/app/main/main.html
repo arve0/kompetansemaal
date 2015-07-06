@@ -15,8 +15,8 @@
         <th>Navn</th>
       </tr>
       <tr ng-repeat="lp in main.lp.results | tittelOrKode:query">
-        <td style="text-align:left">{{lp.Kode}}</td>
-        <td style="text-align:left">{{lp.Tittel}}</td>
+        <td><a href="#/{{lp.Kode}}">{{lp.Kode}}</a></td>
+        <td>{{lp.Tittel}}</td>
       </tr>
     </table>
   </div>
