@@ -4,12 +4,14 @@
   angular
     .module('kompetansemaal')
     .filter('tittelOrKode', function() {
-      return function(array, searchTerm) {
-        if (!angular.isArray(array)) return array;
+      return function(arr, searchTerm) {
+        if (!angular.isArray(arr)) {
+          return arr;
+        }
 
         searchTerm = angular.lowercase(searchTerm);
 
-        return array.filter(compare);
+        return arr.filter(compare);
 
         function compare(val) {
           var kode = angular.lowercase(val.Kode);
