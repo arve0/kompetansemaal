@@ -6,9 +6,7 @@
 
   <div>
     <h1>Læreplan {{ id.params.id }}</h1>
-    <pre>
-    {{ id.data | json }}
-    </pre>
+    <pre>{{ id.data | prettyjson }}</pre>
   </div>
 
 </div>
