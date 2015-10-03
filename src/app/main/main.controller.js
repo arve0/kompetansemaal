@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function MainController($stateParams, udir) {
-    var vm = this;
+    var vm = this;  // view model
     udir.getOdata('Læreplan').then(function(data){
       vm.lp = data.results;
     });

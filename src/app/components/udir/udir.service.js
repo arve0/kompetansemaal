@@ -41,12 +41,7 @@
     }
 
     function getREST(endpoint) {
-      var corsproxy = 'http://crossorigin.me/';
-
-      return $http.get(corsproxy + baseUrl + endpoint, {
-          params: {
-            lang: 'nob'
-          },
+      return $http.get(baseUrl + endpoint, {
           cache: true,
         })
         .then(getComplete)
@@ -62,6 +57,3 @@
     }
   }
 })();
-
-
-

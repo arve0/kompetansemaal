@@ -6,7 +6,31 @@
 
   <div>
     <h1>Læreplan {{ id.params.id }}</h1>
-    <pre>{{ id.data | prettyjson }}</pre>
+    <div ng-repeat="kms in id.data.kompetansemaalsett">
+      <h2>{{kms.tittel | pickLanguage:nob}}</h2>
+      <div ng-repeat="(omrIndex, omr) in kms.hovedomraader">
+        <h3>{{omr.tittel | pickLanguage:nob}}</h3>
+        <table class="table table-striped kompetansemaal">
+          <tr>
+            <th>ID</th>
+            <th>Kompetansemål</th>
+          </tr>
+          <tr ng-repeat="maal in omr.kompetansemaal">
+            <td class="id">
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn btn-default copy" popover="Kopiert!">
+                    <span class="glyphicon glyphicon-copy"></span>
+                  </button>
+                </span>
+                <input type="text" class="form-control" ng-value="id.createID(omrIndex, maal.rekkefoelge)">
+              </div>
+            </td>
+            <td>{{maal.tittel}}</td>
+          </tr>
+        </table>
+    </div>
+    <pre>{{id.data.kompetansemaalsett[0] | prettyjson}}</pre>
   </div>
 
 </div>
