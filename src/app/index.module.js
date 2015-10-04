@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('kompetansemaal', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'ui.bootstrap']);
+    .module('kompetansemaal', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'toastr']);
 
 })();
