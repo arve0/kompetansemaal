@@ -17,20 +17,19 @@
           </tr>
           <tr ng-repeat="maal in omr.kompetansemaal">
             <td class="id">
-              <div class="input-group">
+              <div class="form-inline input-group">
                 <span class="input-group-btn">
                   <button class="btn btn-default copy" popover="Kopiert!">
                     <span class="glyphicon glyphicon-copy"></span>
                   </button>
                 </span>
-                <input type="text" class="form-control" ng-value="id.createID(omrIndex, maal.rekkefoelge)">
+                <input type="text" class="form-control" ng-value="id.createID(kms, omrIndex, maal.rekkefoelge)">
               </div>
             </td>
             <td>{{maal.tittel}}</td>
           </tr>
         </table>
+      </div>
     </div>
-    <pre>{{id.data.kompetansemaalsett[0] | prettyjson}}</pre>
-  </div>
 
 </div>

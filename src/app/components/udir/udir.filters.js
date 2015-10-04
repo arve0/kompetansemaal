@@ -26,11 +26,11 @@ angular
     // not array
     if (!angular.isArray(arr)) { return arr; }
 
-    var l = arr.length;
-
     // no elements
+    var l = arr.length;
     if (l===0) { return arr; }
 
+    // find obj with obj.noekkel = ...lang
     for (var i=0; i < l; i++) {
       var o = arr[i];
       if (o.noekkel.search(lang + "$") !== -1) {
