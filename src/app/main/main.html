@@ -5,20 +5,43 @@
   </div>
 
   <div>
-    <h1>Læreplaner</h1>
-    <div class="form-inline">
+    <div class="form-inline main-soek">
       <input type="text" placeholder="Søk" class="form-control" ng-model="query"></input>
     </div>
-    <table class="table table-striped table-bordered">
-      <tr>
-        <th>Kode</th>
-        <th>Navn</th>
-      </tr>
-      <tr ng-repeat="lp in main.lp | orderBy:'Kode' | tittelOrKode:query">
-        <td><a href="#/{{lp.Kode}}">{{lp.Kode}}</a></td>
-        <td>{{lp.Tittel}}</td>
-      </tr>
-    </table>
+
+    <!-- Kompetansemål -->
+    <div class="col-lg-4">
+      <table class="table table-striped">
+        <tr>
+          <th>Kompetansemål</th>
+        </tr>
+        <tr ng-repeat="maal in main.kompetansemaal | orderBy:'Kode'">
+          <td><a href="#/kompetansemål/{{maal.Kode}}">{{maal.Tittel}}</a></td>
+        </tr>
+      </table>
+    </div>
+    <!-- Fag -->
+    <div class="col-lg-4">
+      <table class="table table-striped">
+        <tr>
+          <th>Fag</th>
+        </tr>
+        <tr ng-repeat="fag in main.fag | orderBy:'Kode'">
+          <td><a href="#/fag/{{fag.Kode}}">{{fag.Tittel}}</a></td>
+        </tr>
+      </table>
+    </div>
+    <!-- Læreplaner -->
+    <div class="col-lg-4">
+      <table class="table table-striped">
+        <tr>
+          <th>Læreplan</th>
+        </tr>
+        <tr ng-repeat="lp in main.laereplaner | orderBy:'Kode'">
+          <td><a href="#/læreplan/{{lp.Kode}}">{{lp.Tittel}}</a></td>
+        </tr>
+      </table>
+    </div>
   </div>
 
 </div>

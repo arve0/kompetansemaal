@@ -6,10 +6,23 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($stateParams, udir) {
+  function MainController(udir, $scope) {
     var vm = this;  // view model
-    udir.getOdata('Læreplan').then(function(data){
-      vm.lp = data.results;
+    var Laereplan = udir.odataResource('Læreplan');
+    var Fag = udir.odataResource('Fagkode');
+    var Kompetansemaal = udir.odataResource('Kompetansemål');
+
+    $scope.$watch('query', function(query){
+      if (!query) return;
+      if (query.length < 2) {
+        vm.laereplaner = [ {Tittel: 'Søk med mer enn 1 bokstav.'} ]
+        vm.fag = [ {Tittel: 'Søk med mer enn 1 bokstav.'} ]
+        vm.kompetansemaal = [ {Tittel: 'Søk med mer enn 1 bokstav.'} ]
+      } else {
+        vm.laereplaner = Laereplan.find('Tittel', query);
+        vm.fag = Fag.find('Tittel', query);
+        vm.kompetansemaal = Kompetansemaal.find('Tittel', query);
+      }
     });
 
   }

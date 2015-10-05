@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('kompetansemaal', ['ngAria', 'ui.router', 'ui.bootstrap']);
+    .module('kompetansemaal', ['ngAria', 'ui.router', 'ui.bootstrap', 'ODataResources']);
 
 })();
