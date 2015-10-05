@@ -6,7 +6,18 @@
     .module('kompetansemaal')
     .filter('prettyjson', function(){
       return function(obj){
-        return window.prettyjson.render(obj, {noColor: true});
+        if (!angular.isObject) { return obj; }
+
+        // create copy without properties starting with $ (angular internal props)
+        var tmp = {}
+        for (var p in obj) {
+          if (p.search(/^\$/) == 0) {
+            continue;
+          }
+          tmp[p] = obj[p];
+        }
+
+        return window.prettyjson.render(tmp, {noColor: true});
       };
     });
 })();
