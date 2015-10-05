@@ -14,11 +14,23 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
-      .state('id', {
-        url: '/:id',
-        templateUrl: 'app/id/id.html',
-        controller: 'IdController',
-        controllerAs: 'id'
+      .state('laereplan', {
+        url: '/laereplan/:id',
+        templateUrl: 'app/laereplan/laereplan.html',
+        controller: 'LaereplanController',
+        controllerAs: 'lp'
+      })
+      .state('fag', {
+        url: '/fag/:id',
+        templateUrl: 'app/fag/fag.html',
+        controller: 'FagController',
+        controllerAs: 'fag'
+      })
+      .state('kompetansemaal', {
+        url: '/kompetansemaal/:id',
+        templateUrl: 'app/kompetansemaal/kompetansemaal.html',
+        controller: 'KompetansemaalController',
+        controllerAs: 'km'
       });
 
     $urlRouterProvider.otherwise('/');

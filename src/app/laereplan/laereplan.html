@@ -5,7 +5,7 @@
   </div>
 
   <div>
-    <div ng-repeat="kms in id.data.kompetansemaalsett">
+    <div ng-repeat="kms in lp.data.kompetansemaalsett">
       <h2>{{kms['etter-fag'][0].tittel | pickLanguage:nob}}</h2>
       <div ng-repeat="(omrIndex, omr) in kms.hovedomraader">
         <h3>{{omr.tittel | pickLanguage:nob}}</h3>
@@ -15,16 +15,7 @@
             <th>Kompetansemål</th>
           </tr>
           <tr ng-repeat="maal in omr.kompetansemaal">
-            <td class="id">
-              <div class="form-inline input-group">
-                <span class="input-group-btn">
-                  <button class="btn btn-default copy" popover="Kopiert!">
-                    <span class="glyphicon glyphicon-copy"></span>
-                  </button>
-                </span>
-                <input type="text" class="form-control" ng-value="id.createID(kms, omrIndex, maal.rekkefoelge)">
-              </div>
-            </td>
+            <td><copy string='maal.kode'></copy></td>
             <td>{{maal.tittel}}</td>
           </tr>
         </table>
