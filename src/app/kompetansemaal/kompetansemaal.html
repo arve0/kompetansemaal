@@ -28,6 +28,24 @@
         <th>Status</th>
         <td>{{km.data.status.beskrivelse | pickLanguage:default}}</td>
       </tr>
+      <tr ng-if="km.data['laereplan-referanser'].length == 1">
+        <th>Læreplan</th>
+        <td>
+          <a ng-repeat="lp in km.data['laereplan-referanser']" href="#/laereplan/{{lp.kode}}">
+            {{lp.tittel}} ({{lp.kode}})
+          </a>
+        </td>
+      </tr>
+      <tr ng-if="km.data['laereplan-referanser'].length > 1">
+        <th>Læreplaner</th>
+        <td>
+          <li ng-repeat="lp in km.data['laereplan-referanser']">
+            <a href="#/laereplan/{{lp.kode}}">
+              {{lp.tittel}} ({{lp.kode}})
+            </a>
+          </li>
+        </td>
+      </tr>
     </table>
   </div>
 
