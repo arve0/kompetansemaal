@@ -5,7 +5,30 @@
   </div>
 
   <div>
-    <pre>{{km.data | prettyjson}}</pre>
+    <table class="table table-striped">
+      <tr>
+        <th>Kode</th>
+        <td><copy string="km.data.kode"></copy></td>
+      </tr>
+      <tr>
+        <th>Tittel</th>
+        <td>{{km.data.tittel | pickLanguage:nob}}</td>
+      </tr>
+      <tr>
+        <th>Sist endret</th>
+        <td>{{km.data['sist-endret']}}</td>
+      </tr>
+      <tr>
+        <th>Data url</th>
+        <td>
+          <a href="{{km.data['url-data']}}">{{km.data['url-data']}}</a>
+        </td>
+      </tr>
+      <tr>
+        <th>Status</th>
+        <td>{{km.data.status.beskrivelse | pickLanguage:default}}</td>
+      </tr>
+    </table>
   </div>
 
 </div>
