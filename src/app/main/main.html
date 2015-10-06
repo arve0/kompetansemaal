@@ -9,14 +9,14 @@
       <input type="text" placeholder="Søk" class="form-control" ng-model="query"></input>
     </div>
 
-    <!-- Kompetansemål -->
+    <!-- Læreplaner -->
     <div class="col-lg-4">
       <table class="table table-striped">
         <tr>
-          <th>Kompetansemål</th>
+          <th>Læreplan</th>
         </tr>
-        <tr ng-repeat="maal in main.kompetansemaal | orderBy:'Kode'">
-          <td><a href="#/kompetansemaal/{{maal.Kode}}">{{maal.Tittel}}</a></td>
+        <tr ng-repeat="lp in main.laereplaner | orderBy:'Kode'">
+          <td><a href="#/laereplan/{{lp.Kode}}">{{lp.Tittel}}</a></td>
         </tr>
       </table>
     </div>
@@ -31,14 +31,14 @@
         </tr>
       </table>
     </div>
-    <!-- Læreplaner -->
+    <!-- Kompetansemål -->
     <div class="col-lg-4">
       <table class="table table-striped">
         <tr>
-          <th>Læreplan</th>
+          <th>Kompetansemål</th>
         </tr>
-        <tr ng-repeat="lp in main.laereplaner | orderBy:'Kode'">
-          <td><a href="#/laereplan/{{lp.Kode}}">{{lp.Tittel}}</a></td>
+        <tr ng-repeat="maal in main.kompetansemaal | orderBy:'Kode'">
+          <td><a href="#/kompetansemaal/{{maal.Kode}}">{{maal.Tittel}}</a></td>
         </tr>
       </table>
     </div>
