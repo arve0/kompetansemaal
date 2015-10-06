@@ -4,13 +4,13 @@
     <navbar />
   </div>
 
-  <div>
-    <div class="form-inline main-soek">
-      <input type="text" placeholder="Søk" class="form-control" ng-model="query"></input>
+  <div id="main">
+    <div class="form-inline search">
+      <input type="text" placeholder="Søk" class="form-control" ng-model="search.query" tooltip="2 eller flere bokstaver" tooltip-trigger="none" tooltip-is-open="search.tooltip" ng-focus="search.tooltip = (search.query)?false:true" ng-blur="search.tooltip = false"></input>
     </div>
 
     <!-- Læreplaner -->
-    <div class="col-lg-4">
+    <div class="col-lg-4" ng-if="main.laereplaner.length">
       <table class="table table-striped">
         <tr>
           <th>Læreplan</th>
@@ -21,7 +21,7 @@
       </table>
     </div>
     <!-- Fag -->
-    <div class="col-lg-4">
+    <div class="col-lg-4" ng-if="main.fag.length">
       <table class="table table-striped">
         <tr>
           <th>Fag</th>
@@ -32,7 +32,7 @@
       </table>
     </div>
     <!-- Kompetansemål -->
-    <div class="col-lg-4">
+    <div class="col-lg-4" ng-if="main.kompetansemaal.length">
       <table class="table table-striped">
         <tr>
           <th>Kompetansemål</th>

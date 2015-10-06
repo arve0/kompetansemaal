@@ -12,18 +12,24 @@
     var Fag = udir.odataResource('Fagkode');
     var Kompetansemaal = udir.odataResource('Kompetansemål');
 
-    $scope.$watch('query', function(query){
-      if (!query) return;
-      if (query.length < 2) {
-        vm.laereplaner = [ {Tittel: 'Søk med mer enn 1 bokstav.'} ]
-        vm.fag = [ {Tittel: 'Søk med mer enn 1 bokstav.'} ]
-        vm.kompetansemaal = [ {Tittel: 'Søk med mer enn 1 bokstav.'} ]
+    $scope.search = { tooltip: false };
+    $scope.$watch('search.query', function(query, oldVal){
+      if (typeof query === 'undefined') {
+        return;
+      } else if (query.length < 2) {
+        $scope.search.tooltip = true;
+        vm.laereplaner = [];
+        vm.fag = [];
+        vm.kompetansemaal = [];
+        return;
       } else {
+        $scope.search.tooltip = false;
         vm.laereplaner = Laereplan.find('Tittel', query);
         vm.fag = Fag.find('Tittel', query);
         vm.kompetansemaal = Kompetansemaal.find('Tittel', query);
       }
     });
+
 
   }
 })();

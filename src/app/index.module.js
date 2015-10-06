@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('kompetansemaal', ['ngAria', 'ui.router', 'ODataResources', 'angular-clipboard', 'mgcrea.ngStrap']);
+    .module('kompetansemaal', ['ngAria', 'ui.router', 'ODataResources', 'angular-clipboard', 'ui.bootstrap']);
 
 })();

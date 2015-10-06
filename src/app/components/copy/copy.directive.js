@@ -6,7 +6,7 @@
     .directive('copy', copyDirective);
 
   /** @ngInject */
-  function copyDirective($tooltip, $timeout) {
+  function copyDirective($timeout) {
     var directive = {
       restrict: 'E',
       templateUrl: 'app/components/copy/copy.html',
@@ -27,29 +27,25 @@
         failMsg = 'Press Ctrl-C to copy.';
       }
 
-      // better way of doing this?
-      var copiedTooltip = $tooltip(element, {
-        title: 'Kopiert!',
-        placement: 'top',
-        trigger: 'manual'
-      });
-
-      var failedTooltip = $tooltip(element, {
-        title: failMsg,
-        placement: 'top',
-        trigger: 'manual'
-      });
-
+      scope.tooltip = {msg:'Kopiert!', show:false}
       scope.copied = function() {
-        copiedTooltip.show();
-        $timeout(copiedTooltip.hide, 1000);
+        scope.tooltip.show = true;
+        // inside link -> we need to apply changes
+        scope.$apply();
+        $timeout(hideTooltip, 1000);
       }
 
       scope.error = function(err) {
         // select text when failing to copy text
         element[0].getElementsByTagName('input')[0].select();
-        failedTooltip.show();
-        $timeout(failedTooltip.hide, 2000);
+        scope.tooltip.msg = failMsg;
+        scope.tooltip.show = true;
+        scope.$apply();
+        $timeout(hideTooltip, 2000);
+      }
+
+      function hideTooltip(){
+        scope.tooltip.show = false;
       }
 
     } // link end
