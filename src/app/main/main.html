@@ -6,7 +6,7 @@
 
   <div id="main">
     <div class="form-inline search">
-      <input type="text" placeholder="Søk" class="form-control" ng-model="search.query" tooltip="2 eller flere bokstaver" tooltip-trigger="none" tooltip-is-open="search.tooltip" ng-focus="search.tooltip = (search.query)?false:true" ng-blur="search.tooltip = false"></input>
+      <input type="text" placeholder="Søk" class="form-control" ng-model="search.query" ng-model-options="{debounce: 200}" tooltip="2 eller flere bokstaver" tooltip-trigger="none" tooltip-is-open="search.tooltip" ng-focus="search.tooltip = (search.query)?false:true" ng-blur="search.tooltip = false"></input>
     </div>
 
     <!-- Læreplaner -->
