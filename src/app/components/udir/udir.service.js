@@ -19,14 +19,18 @@
 
     function odataResource(endpoint) {
       var Resource = $odataresource(baseUrl + 'odata/' + endpoint + '/:id');
+
       Resource.find = function(field, query) {
         return Resource.odata()
-                       .filter(
-                          new $odata.Func('substringof',
-                            new $odata.Value(query.toLowerCase()),
-                            new $odata.Func('tolower', field)
-                          ), true ).query();
+                  .filter('Status', 'http://psi.udir.no/ontologi/status/publisert')
+                  .filter(
+                    new $odata.Func('substringof',
+                      new $odata.Value(query.toLowerCase()),
+                      new $odata.Func('tolower', field)
+                    ), true )
+                  .query();
       };
+
       return Resource;
     }
 
