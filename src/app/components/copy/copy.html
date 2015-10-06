@@ -1,8 +1,8 @@
 <div class="form-inline input-group copy">
-  <span class="input-group-btn">
-    <button class="btn btn-default copy">
+  <span clipboard text="text" on-copied="copied()" on-error="error(err)" class="input-group-btn">
+    <button class="btn btn-default">
       <span class="glyphicon glyphicon-copy"></span>
     </button>
   </span>
-  <input type="text" class="form-control" ng-value="string" >
+  <input type="text" class="form-control" ng-value="text" >
 </div>
