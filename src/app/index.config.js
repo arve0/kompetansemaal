@@ -9,10 +9,6 @@
   function config($logProvider, $httpProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
-
-    // intercept odata traffic and return obj.d.results
-    $httpProvider.interceptors.push('udirOdataInterceptor');
-
   }
 
 })();

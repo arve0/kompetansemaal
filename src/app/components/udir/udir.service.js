@@ -18,10 +18,16 @@
     return service;
 
     function odataResource(endpoint) {
-      var Resource = $odataresource(baseUrl + 'odata/' + endpoint + '/:id');
+      var R = $odataresource(baseUrl + 'odata/' + endpoint + '/:id', {},
+                              { odata:
+                                { cache: true,
+                                  isArray: true,
+                                  transformResponse: getResult
+                                }
+                              });
 
-      Resource.find = function(field, query) {
-        return Resource.odata()
+      R.find = function(field, query) {
+        return R.odata()
                   .filter('Status', 'http://psi.udir.no/ontologi/status/publisert')
                   .filter(
                     new $odata.Func('substringof',
@@ -31,7 +37,7 @@
                   .query();
       };
 
-      return Resource;
+      return R;
     }
 
     function getREST(endpoint) {
@@ -50,4 +56,25 @@
       }
     }
   }
+
+  function getResult(data) {
+    try {
+      var res = angular.fromJson(data);
+    } catch(e) {
+      // not JSON
+      return { error: {msg: 'Not JSON' + e},
+               data: data};
+    }
+
+    // get array or object from result
+    if ('d' in res) {
+      if ('results' in res.d) {
+        res = res.d.results;
+      } else {
+        res = res.d;
+      }
+    }
+    return res;
+  }
+
 })();
