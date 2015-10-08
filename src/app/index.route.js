@@ -31,6 +31,12 @@
         templateUrl: 'app/kompetansemaal/kompetansemaal.html',
         controller: 'KompetansemaalController',
         controllerAs: 'km'
+      })
+      .state('kode', {
+        url: '/kode/:id',
+        templateUrl: 'app/kode/kode.html',
+        controller: 'KodeController',
+        controllerAs: 'kode'
       });
 
     $urlRouterProvider.otherwise('/');
