@@ -16,7 +16,7 @@
           <th>Læreplan</th>
         </tr>
         <tr ng-repeat="lp in main.state.laereplaner | orderBy:'Kode'">
-          <td><a href="#/laereplan/{{lp.Kode}}" ng-bind-html="lp.Tittel | highlightText:main.state.search.query"></a></td>
+          <td><a href="#/laereplan/{{lp.Kode}}" ng-bind-html="lp.Tittel +' ('+ lp.Kode +')' | highlightText:main.state.search.query"></a></td>
         </tr>
       </table>
     </div>
@@ -38,7 +38,7 @@
           <th>Kompetansemål</th>
         </tr>
         <tr ng-repeat="maal in main.state.kompetansemaal | orderBy:'Kode'">
-          <td><a href="#/kompetansemaal/{{maal.Kode}}" ng-bind-html="maal.Tittel | highlightText:main.state.search.query"></a></td>
+          <td><a href="#/kompetansemaal/{{maal.Kode}}" ng-bind-html="maal.Tittel +' ('+ maal.Kode +')' | highlightText:main.state.search.query"></a></td>
         </tr>
       </table>
     </div>
