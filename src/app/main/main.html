@@ -27,7 +27,7 @@
           <th>Fag</th>
         </tr>
         <tr ng-repeat="fag in main.state.fag | orderBy:'Kode'">
-          <td><a href="#/fag/{{fag.Kode}}" ng-bind-html="fag.Tittel | highlightText:main.state.search.query"></a></td>
+          <td><a href="#/fag/{{fag.Kode}}" ng-bind-html="fag.Tittel +' ('+ fag.Kode +')' | highlightText:main.state.search.query"></a></td>
         </tr>
       </table>
     </div>
