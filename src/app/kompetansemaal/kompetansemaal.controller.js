@@ -7,12 +7,13 @@
 
   /** @ngInject */
   function KompetansemaalController($stateParams, udir) {
-    var vm = this;  // view model
+    var km = this;  // view model
 
-    vm.params = $stateParams;
-    vm.data = udir.getREST(vm.params.id).then(function(data){
-      vm.data = data;
+    km.params = $stateParams;
+    km.data = udir.getREST(km.params.id).then(function(data){
+      km.data = data;
     });
 
   }
+  
 })();
