@@ -1,44 +1,41 @@
 (function() {
   'use strict';
 
-angular
-.module('kompetansemaal')
-.filter('tittelOrKode', function() {
-  return function(arr, searchTerm) {
-    // filter array of objects by obj.Kode and obj.Tittel
-    if (!angular.isArray(arr)) {
-      return arr;
-    }
+  angular
+    .module('kompetansemaal')
+    .filter('isEqual', function(){return isEqual;})
+    .filter('isNotEqual', function(){return isNotEqual;})
+    .filter('pickLanguage', function(){return pickLanguage;});
 
-    searchTerm = angular.lowercase(searchTerm);
-
-    return arr.filter(compare);
-
-    function compare(val) {
-      var kode = angular.lowercase(val.Kode);
-      var tittel = angular.lowercase(val.Tittel);
-      return kode.search(searchTerm) !== -1 ||
-             tittel.search(searchTerm) !== -1;
-    }
-  };
-}).filter('pickLanguage', function(){
-  return function(arr, lang){
-    // not array
-    if (!angular.isArray(arr)) { return arr; }
+  function pickLanguage(obj, lang){
+    if (!angular.isObject(obj)) { return obj; }
 
     // no elements
-    var l = arr.length;
-    if (l===0) { return arr; }
-
-    // find obj with obj.noekkel = ...lang
-    for (var i=0; i < l; i++) {
-      var o = arr[i];
-      if (o.noekkel.search(lang + "$") !== -1) {
-        return o.verdi;
-      }
+    if (lang in obj) {
+      return obj[lang];
+    } else if ('default' in obj) {
+      return obj['default'];
+    } else {
+      return obj;
     }
-    return arr[0].verdi;  // not found, choose default
-  };
-});
+  }
+
+
+  /**
+   * check if values in two array of objects is equal
+   * e.g.: {verdi: 'Biologi 1', noekkel: '..nob'} and
+   *       {verdi: 'Biologi 1', noekkel: 'default'} are equal
+   * @param {arrays of objects} arrays - two arrays with {verdi: .., noekkel: ..} objects
+   * @param {string} language - which language to compare
+   */
+  function isEqual(arrays, language) {
+    var val1 = pickLanguage(arrays[0], language);
+    var val2 = pickLanguage(arrays[1], language);
+    return (val1 === val2);
+  }
+
+  function isNotEqual(arrays, language){
+    return !isEqual(arrays, language);
+  }
 
 })();

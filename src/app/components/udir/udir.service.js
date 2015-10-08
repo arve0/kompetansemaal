@@ -22,7 +22,7 @@
                               { odata:
                                 { cache: true,
                                   isArray: true,
-                                  transformResponse: getResult
+                                  transformResponse: transformOdata
                                 }
                               });
 
@@ -45,7 +45,7 @@
           var predicate = new $odata.Predicate(
             new $odata.Func('substringof', value, property),
             true);
-          predicates.push(predicate)
+          predicates.push(predicate);
         }
 
         var query = $odata.Predicate.or(predicates);
@@ -58,40 +58,98 @@
     }
 
     function getREST(endpoint) {
-      return $http.get(baseUrl + endpoint, {
-          cache: true,
+      return $http.get(baseUrl + endpoint, {cache: true})
+        .then(function(response){
+          return replaceKeyValueArrays(response.data);
         })
-        .then(getComplete)
-        .catch(getFailed);
-
-      function getComplete(response) {
-        return response.data;
-      }
-
-      function getFailed(error) {
-        $log.error('XHR Failed for udir.\n' + angular.toJson(error, true));
-      }
-    }
-  }
-
-  function getResult(data) {
-    try {
-      var res = angular.fromJson(data);
-    } catch(e) {
-      // not JSON
-      return { error: {msg: 'Not JSON' + e},
-               data: data};
+        .catch(function(error){
+          $log.error('XHR Failed for udir.\n' + angular.toJson(error, true));
+        });
     }
 
-    // get array or object from result
-    if ('d' in res) {
-      if ('results' in res.d) {
-        res = res.d.results;
-      } else {
-        res = res.d;
+    /**
+     * Replaces instaces of [{noekkel: '', verdi: ''}] in object.
+     */
+    function replaceKeyValueArrays(obj) {
+      for (var key in obj) {
+        if (isKeyValueArray(obj[key])) {
+          obj[key] = arrayToObject(obj[key]);
+        } else if (angular.isObject(obj[key])) {
+          obj[key] = replaceKeyValueArrays(obj[key]);
+        }
       }
+      return obj;
     }
-    return res;
+
+    /**
+     * Checks if array is [{noekkel: '', verdi:''}] array.
+     * NOTE: Assumes properties of first object to be equal to properties in all other objects.
+     */
+    function isKeyValueArray(arr) {
+      return (angular.isArray(arr) &&
+              arr.length !== 0 &&
+              angular.isObject(arr[0]) &&
+              Object.keys(arr[0]).length === 2 &&
+              'noekkel' in arr[0] &&
+              'verdi' in arr[0]);
+    }
+
+    /**
+     * Transforms [{noekkel: 'http://psi.oasis-open.org/iso/639/#eng', verdi: 'Biology 1'},
+     *             {noekkel: 'http://psi.oasis-open.org/iso/639/#nob', verdi: 'Biologi 1'}]
+     * to
+     *            {'eng': 'Biology 1',
+     *             'nob': 'Biologi 1'}
+     */
+    function arrayToObject(arr){
+      var keyPrefix = 'http://psi.oasis-open.org/iso/639/#';
+      var obj = {};
+      for (var i=0, l=arr.length; i < l; ++i){
+        // error handling
+        if (!('noekkel' in arr[i]) || !('verdi' in arr[i])) {
+          $log.error('Expected "noekkel" and "verdi" keys on object.');
+          $log.error(arr[i]);
+          continue;
+        } else if (Object.keys(arr[i]).length > 2) {
+          $log.warn('Got object with more than two keys.');
+          $log.warn(arr[i]);
+        }
+        var key = arr[i].noekkel;
+        if (key.search(keyPrefix) === 0) {
+          key = key.substring(keyPrefix.length, key.length);
+        }
+        if (key in obj) {
+          $log.warn('Several instances of '+ arr[i].noekkel);
+        }
+        obj[key] = arr[i].verdi;
+      }  // for
+      return obj;
+    }  // arrayToObject
+
+    /**
+     * Get response.d.results or response.d from odata searches.
+     */
+    function transformOdata(data) {
+      var res;
+      try {
+        res = angular.fromJson(data);
+      } catch(e) {
+        // not JSON
+        return { error: {msg: 'Not JSON' + e},
+        data: data};
+      }
+
+      // get array or object from result
+      if ('d' in res) {
+        if ('results' in res.d) {
+          res = res.d.results;
+        } else {
+          res = res.d;
+        }
+      }
+      return res;
+    }
+
   }
 
 })();
