@@ -6,12 +6,13 @@
     .controller('FagController', FagController);
 
   /** @ngInject */
-  function FagController($stateParams, udir) {
-    var vm = this;  // view model
+  function FagController($stateParams, udir, mainState) {
+    var fag = this;  // view model
+    fag.state = mainState;  // access to language
 
-    vm.params = $stateParams;
-    vm.data = udir.getREST(vm.params.id).then(function(data){
-      vm.data = data;
+    fag.params = $stateParams;
+    fag.data = udir.getREST(fag.params.id).then(function(data){
+      fag.data = data;
     });
 
   }
