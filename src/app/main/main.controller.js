@@ -34,6 +34,13 @@
       }
     });
 
+    main.nothingFound = function() {
+      return (state.search.query &&
+              !state.laereplaner.length &&
+              !state.fag.length &&
+              !state.kompetansemaal.length);
+    };
+
   }
 
 })();

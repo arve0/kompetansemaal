@@ -9,6 +9,10 @@
       <input type="text" placeholder="Søk" class="form-control" ng-model="main.state.search.query" ng-model-options="{debounce: 200}" tooltip="2 eller flere bokstaver" tooltip-trigger="none" tooltip-is-open="main.state.search.tooltip" ng-focus="main.state.search.tooltip = (main.state.search.query)?false:true" ng-blur="main.state.search.tooltip = false"></input>
     </div>
 
+    <div class="alert alert-info" role="alert" ng-if="main.nothingFound()">
+      Fant ingen læreplaner, fag eller kompetansemål med søket <i>{{main.state.search.query}}</i>.
+    </div>
+
     <!-- Læreplaner -->
     <div class="col-lg-4" ng-if="main.state.laereplaner.length">
       <table class="table table-striped">
