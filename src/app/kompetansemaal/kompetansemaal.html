@@ -10,30 +10,13 @@
         <th>Kode</th>
         <td><copy text="km.data.kode"></copy></td>
       </tr>
-      <tr>
-        <th>Tittel</th>
-        <td>{{km.data.tittel | pickLanguage:nob}}</td>
-      </tr>
+      <tr table-row th="Tittel" td="km.data.tittel | pickLanguage:nob"></tr>
       <tr ng-if="km.data['laereplan-referanser'].length == 1">
         <th>Læreplan</th>
         <td>
           <a ng-repeat="lp in km.data['laereplan-referanser']" href="#/laereplan/{{lp.kode}}">
             {{lp.tittel}} ({{lp.kode}})
           </a>
-        </td>
-      </tr>
-      <tr>
-        <th>Status</th>
-        <td>{{km.data.status.beskrivelse | pickLanguage:default}}</td>
-      </tr>
-      <tr>
-        <th>Sist endret</th>
-        <td>{{km.data['sist-endret']}}</td>
-      </tr>
-      <tr>
-        <th>Data url</th>
-        <td>
-          <a href="{{km.data['url-data']}}">{{km.data['url-data']}}</a>
         </td>
       </tr>
       <tr ng-if="km.data['laereplan-referanser'].length > 1">
@@ -44,6 +27,14 @@
               {{lp.tittel}} ({{lp.kode}})
             </a>
           </li>
+        </td>
+      </tr>
+      <tr table-row th="Status" td="km.data.status.beskrivelse | pickLanguage:default"></tr>
+      <tr table-row th="Sist endret" td="km.data['sist-endret']"></tr>
+      <tr>
+        <th>Data url</th>
+        <td>
+          <a href="{{km.data['url-data']}}">{{km.data['url-data']}}</a>
         </td>
       </tr>
     </table>
