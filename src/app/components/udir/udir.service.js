@@ -26,15 +26,32 @@
                                 }
                               });
 
-      R.find = function(field, query) {
+      /**
+       * Search for query {field: term}. Get all fields or fields specified.
+       * @argument {Object} query - {field: term, field2: term2} will search for term in field
+       *                            OR term2 in field2.
+       * @return odata resource ready for query
+       */
+      R.search = function(queries) {
+        var predicates = [];
+
+        // create list of predicates
+        for (var field in queries) {
+          // odata property and value in lower case
+          var property = new $odata.Func('tolower', field);
+          var value = new $odata.Value(queries[field].toLowerCase());
+
+          // find substring in given property
+          var predicate = new $odata.Predicate(
+            new $odata.Func('substringof', value, property),
+            true);
+          predicates.push(predicate)
+        }
+
+        var query = $odata.Predicate.or(predicates);
         return R.odata()
-                  .filter('Status', 'http://psi.udir.no/ontologi/status/publisert')
-                  .filter(
-                    new $odata.Func('substringof',
-                      new $odata.Value(query.toLowerCase()),
-                      new $odata.Func('tolower', field)
-                    ), true )
-                  .query();
+                .filter('Status', 'http://psi.udir.no/ontologi/status/publisert')
+                .filter(query);
       };
 
       return R;

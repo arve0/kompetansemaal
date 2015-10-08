@@ -26,9 +26,11 @@
         return;
       } else {
         state.search.tooltip = false;
-        state.laereplaner = Laereplan.find('Tittel', query);
-        state.fag = Fag.find('Tittel', query);
-        state.kompetansemaal = Kompetansemaal.find('Tittel', query);
+        var search = {Tittel: query, Kode: query};
+        var select = ['Tittel', 'Kode'];
+        state.laereplaner = Laereplan.search(search).select(select).query();
+        state.fag = Fag.search(search).select(select).query();
+        state.kompetansemaal = Kompetansemaal.search(search).select(select).query();
       }
     });
 
