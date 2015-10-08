@@ -6,38 +6,38 @@
 
   <div id="main">
     <div class="form-inline search">
-      <input type="text" placeholder="Søk" class="form-control" ng-model="search.query" ng-model-options="{debounce: 200}" tooltip="2 eller flere bokstaver" tooltip-trigger="none" tooltip-is-open="search.tooltip" ng-focus="search.tooltip = (search.query)?false:true" ng-blur="search.tooltip = false"></input>
+      <input type="text" placeholder="Søk" class="form-control" ng-model="main.state.search.query" ng-model-options="{debounce: 200}" tooltip="2 eller flere bokstaver" tooltip-trigger="none" tooltip-is-open="main.state.search.tooltip" ng-focus="main.state.search.tooltip = (main.state.search.query)?false:true" ng-blur="main.state.search.tooltip = false"></input>
     </div>
 
     <!-- Læreplaner -->
-    <div class="col-lg-4" ng-if="main.laereplaner.length">
+    <div class="col-lg-4" ng-if="main.state.laereplaner.length">
       <table class="table table-striped">
         <tr>
           <th>Læreplan</th>
         </tr>
-        <tr ng-repeat="lp in main.laereplaner | orderBy:'Kode'">
+        <tr ng-repeat="lp in main.state.laereplaner | orderBy:'Kode'">
           <td><a href="#/laereplan/{{lp.Kode}}">{{lp.Tittel}}</a></td>
         </tr>
       </table>
     </div>
     <!-- Fag -->
-    <div class="col-lg-4" ng-if="main.fag.length">
+    <div class="col-lg-4" ng-if="main.state.fag.length">
       <table class="table table-striped">
         <tr>
           <th>Fag</th>
         </tr>
-        <tr ng-repeat="fag in main.fag | orderBy:'Kode'">
+        <tr ng-repeat="fag in main.state.fag | orderBy:'Kode'">
           <td><a href="#/fag/{{fag.Kode}}">{{fag.Tittel}}</a></td>
         </tr>
       </table>
     </div>
     <!-- Kompetansemål -->
-    <div class="col-lg-4" ng-if="main.kompetansemaal.length">
+    <div class="col-lg-4" ng-if="main.state.kompetansemaal.length">
       <table class="table table-striped">
         <tr>
           <th>Kompetansemål</th>
         </tr>
-        <tr ng-repeat="maal in main.kompetansemaal | orderBy:'Kode'">
+        <tr ng-repeat="maal in main.state.kompetansemaal | orderBy:'Kode'">
           <td><a href="#/kompetansemaal/{{maal.Kode}}">{{maal.Tittel}}</a></td>
         </tr>
       </table>
