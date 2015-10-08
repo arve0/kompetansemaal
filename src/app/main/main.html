@@ -13,7 +13,10 @@
     <div class="col-lg-4" ng-if="main.state.laereplaner.length">
       <table class="table table-striped">
         <tr>
-          <th>Læreplan</th>
+          <th>
+            Læreplan<span ng-if="main.state.laereplaner.length > 1">er</span>
+            <span class="badge">{{main.state.laereplaner.length}}</span>
+          </th>
         </tr>
         <tr ng-repeat="lp in main.state.laereplaner | orderBy:'Kode'">
           <td><a href="#/laereplan/{{lp.Kode}}" ng-bind-html="lp.Tittel +' ('+ lp.Kode +')' | highlightText:main.state.search.query"></a></td>
@@ -24,7 +27,10 @@
     <div class="col-lg-4" ng-if="main.state.fag.length">
       <table class="table table-striped">
         <tr>
-          <th>Fag</th>
+          <th>
+            Fag
+            <span class="badge">{{main.state.fag.length}}</span>
+          </th>
         </tr>
         <tr ng-repeat="fag in main.state.fag | orderBy:'Kode'">
           <td><a href="#/fag/{{fag.Kode}}" ng-bind-html="fag.Tittel +' ('+ fag.Kode +')' | highlightText:main.state.search.query"></a></td>
@@ -35,7 +41,10 @@
     <div class="col-lg-4" ng-if="main.state.kompetansemaal.length">
       <table class="table table-striped">
         <tr>
-          <th>Kompetansemål</th>
+          <th>
+            Kompetansemål
+            <span class="badge">{{main.state.kompetansemaal.length}}</span>
+          </th>
         </tr>
         <tr ng-repeat="maal in main.state.kompetansemaal | orderBy:'Kode'">
           <td><a href="#/kompetansemaal/{{maal.Kode}}" ng-bind-html="maal.Tittel +' ('+ maal.Kode +')' | highlightText:main.state.search.query"></a></td>
