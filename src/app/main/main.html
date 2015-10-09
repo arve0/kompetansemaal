@@ -1,12 +1,9 @@
+<navbar></navbar>
 <div class="container">
-
-  <div>
-    <navbar />
-  </div>
 
   <div id="main">
     <div class="form-inline search">
-      <input type="text" placeholder="Søk" class="form-control" ng-model="main.state.search.query" ng-model-options="{debounce: 200}" tooltip="2 eller flere bokstaver" tooltip-trigger="none" tooltip-is-open="main.state.search.tooltip" ng-focus="main.state.search.tooltip = (main.state.search.query)?false:true" ng-blur="main.state.search.tooltip = false"></input>
+      <input type="text" placeholder="Søk" class="form-control" ng-model="main.state.search.query" ng-model-options="{debounce: 200}" tooltip="2 eller flere bokstaver" tooltip-trigger="none" tooltip-is-open="main.state.search.tooltip" ng-focus="main.state.search.tooltip = (main.state.search.query)?false:true" ng-blur="main.state.search.tooltip = false">
     </div>
 
     <div class="alert alert-info" role="alert" ng-if="main.nothingFound()">
