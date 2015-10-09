@@ -10,7 +10,13 @@
     var directive = {
       restrict: 'E',
       templateUrl: 'app/components/navbar/navbar.html',
+      controller: controller
     };
+
+    /** ngInject */
+    function controller($scope) {
+      $scope.isCollapsed = true;
+    }
 
     return directive;
 
