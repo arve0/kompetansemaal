@@ -60,7 +60,9 @@
     function getREST(endpoint) {
       return $http.get(baseUrl + endpoint, {cache: true})
         .then(function(response){
-          return replaceKeyValueArrays(response.data);
+          var data = replaceKeyValueArrays(response.data);
+          data = rmDashesFromProperties(data);
+          return data;
         })
         .catch(function(error){
           $log.error('XHR Failed for udir.\n' + angular.toJson(error, true));
@@ -79,6 +81,25 @@
         }
       }
       return obj;
+    }
+
+    function rmDashesFromProperties(obj) {
+      for (var key in obj) {
+        var newKey = removeDashes(key);
+        if (newKey !== key) {
+          obj[newKey] = obj[key];
+          delete obj[key];
+        }
+        if (angular.isObject(obj[newKey])) {
+          rmDashesFromProperties(obj[newKey]);
+        }
+      }
+      return obj;
+    }
+
+    function removeDashes(str) {
+      var dashes = new RegExp('\-', 'gi');
+      return str.replace(dashes, '');
     }
 
     /**

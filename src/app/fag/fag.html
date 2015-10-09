@@ -11,13 +11,26 @@
       <tr table-row ng-if="[fag.data.tittel, fag.data.kortform] | isNotEqual" th="Kortform" td="fag.data.kortform | pickLanguage:nob"></tr>
       <tr table-row th="Fagtype" td="fag.data.fagtype.beskrivelse | pickLanguage:nob"></tr>
       <tr table-row th="Opplæringsnivå" td="fag.data.opplaeringsnivaa.beskrivelse | pickLanguage:nob"></tr>
-      <tr table-row th="Sist endret" td="fag.data['sist-endret'] | pickLanguage:nob"></tr>
+      <tr table-row th="Sist endret" td="fag.data.sistendret | pickLanguage:nob"></tr>
       <tr table-row th="Status" td="fag.data.status.beskrivelse | pickLanguage:nob"></tr>
-      <tr table-row th="Data-url" td="fag.data['url-data']"></tr>
-      <tr table-row ng-if="fag.data['omfang-totalt']" th="Omfang totalt" td="fag.data['omfang-totalt']"></tr>
-      <tr table-row ng-if="fag.data['omfang-vitnemaal']" th="Omfang vitnemål" td="fag.data['omfang-vitnemaal']"></tr>
-      <tr table-row ng-if="fag.data['omfang-brutto']" th="Omfang totalt" td="fag.data['omfang-brutto']"></tr>
-      <tr table-row ng-if="fag.data['omfang-kompetansemaalsett']" th="Omfang kompetansemaalsett" td="fag.data['omfang-kompetansemaalsett']"></tr>
+      <tr table-row th="Data-url" td="fag.data.urldata"></tr>
+      <tr table-row ng-if="fag.data.omfangtotalt" th="Omfang totalt" td="fag.data.omfangtotalt"></tr>
+      <tr table-row ng-if="fag.data.omfangvitnemaal" th="Omfang vitnemål" td="fag.data.omfangvitnemaal"></tr>
+      <tr table-row ng-if="fag.data.omfangbrutto" th="Omfang totalt" td="fag.data.omfangbrutto"></tr>
+      <tr table-row ng-if="fag.data.omfangkompetansemaalsett" th="Omfang kompetansemaalsett" td="fag.data.omfangkompetansemaalsett"></tr>
+      <tr>
+        <th>Opplæringsfag</th>
+        <td>
+          <a href="#" ng-if="fag.data.opplaeringsfag.length == 1">
+            {{fag.data.opplaeringsfag[0].tittel}}
+          </a>
+          <li ng-if="fag.data.opplaeringsfag.length > 1" ng-repeat="ofag in fag.data.opplaeringsfag">
+            <a href="#/kode/{{ofag.kode}}">
+              {{ofag.tittel}}
+            </a>
+          </li>
+        </td>
+      </tr>
 
     </table>
 </div>
