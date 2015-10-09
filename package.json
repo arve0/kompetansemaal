@@ -1,7 +1,9 @@
 {
   "name": "kompetansemaal",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "deployd": "^0.8.5"
+  },
   "scripts": {
     "test": "gulp test"
   },
