@@ -32,6 +32,12 @@
         controller: 'KompetansemaalController',
         controllerAs: 'km'
       })
+      .state('oppgaver', {
+        url: '/oppgaver',
+        templateUrl: 'app/oppgaver/oppgaver.html',
+        controller: 'OppgaverController',
+        controllerAs: 'oppg'
+      })
       .state('kode', {
         url: '/kode/:id',
         templateUrl: 'app/kode/kode.html',
