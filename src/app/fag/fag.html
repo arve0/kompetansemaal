@@ -7,31 +7,32 @@
         <th>Kode</th>
         <td><copy text="fag.data.kode"></copy></td>
       </tr>
-      <tr table-row th="Tittel" td="fag.data.tittel['nob']"></tr>
-      <tr table-row ng-if="[fag.data.tittel, fag.data.kortform] | isNotEqual" th="Kortform" td="fag.data.kortform | pickLanguage:nob"></tr>
-      <tr table-row th="Fagtype" td="fag.data.fagtype.beskrivelse | pickLanguage:nob"></tr>
-      <tr table-row th="Opplæringsnivå" td="fag.data.opplaeringsnivaa.beskrivelse | pickLanguage:nob"></tr>
-      <tr table-row th="Sist endret" td="fag.data.sistendret | pickLanguage:nob"></tr>
-      <tr table-row th="Status" td="fag.data.status.beskrivelse | pickLanguage:nob"></tr>
-      <tr table-row th="Data-url" td="fag.data.urldata"></tr>
-      <tr table-row ng-if="fag.data.omfangtotalt" th="Omfang totalt" td="fag.data.omfangtotalt"></tr>
-      <tr table-row ng-if="fag.data.omfangvitnemaal" th="Omfang vitnemål" td="fag.data.omfangvitnemaal"></tr>
-      <tr table-row ng-if="fag.data.omfangbrutto" th="Omfang totalt" td="fag.data.omfangbrutto"></tr>
-      <tr table-row ng-if="fag.data.omfangkompetansemaalsett" th="Omfang kompetansemaalsett" td="fag.data.omfangkompetansemaalsett"></tr>
+      <tr table-row th="Tittel" td="fag.data.tittel.nob"></tr>
+      <tr table-row th="Kortform" td="fag.data.kortform | pickLanguage:nob" ng-if="fag.data.kortform.nob && ([fag.data.tittel, fag.data.kortform] | isNotEqual)"></tr>
       <tr>
-        <th>Opplæringsfag</th>
+        <th>Læreplan<span ng-if="fag.data.opplaeringsfag.length > 1">er</span></th>
         <td>
-          <a href="#" ng-if="fag.data.opplaeringsfag.length == 1">
-            {{fag.data.opplaeringsfag[0].tittel}}
+          <a ng-if="fag.data.opplaeringsfag.length == 1" href="#/laereplan/{{fag.data.opplaeringsfag[0].laereplanreferanse[0].kode}}">
+            {{fag.data.opplaeringsfag[0].laereplanreferanse[0].kode}}
           </a>
           <li ng-if="fag.data.opplaeringsfag.length > 1" ng-repeat="ofag in fag.data.opplaeringsfag">
-            <a href="#/kode/{{ofag.kode}}">
-              {{ofag.tittel}}
+            <a href="#/laereplan/{{ofag.laereplanreferanse[0].kode}}">
+              {{ofag.laereplanreferanse[0].kode}}
             </a>
           </li>
         </td>
       </tr>
-
+      <tr table-row th="Sist endret" td="fag.data.sistendret | pickLanguage:nob"></tr>
+      <tr table-row th="Fagtype" td="fag.data.fagtype.beskrivelse | pickLanguage:nob"></tr>
+      <tr table-row th="Opplæringsnivå" td="fag.data.opplaeringsnivaa.beskrivelse | pickLanguage:nob"></tr>
+      <tr table-row th="Omfang totalt" td="fag.data.omfangtotalt" ng-if="fag.data.omfangtotalt"></tr>
+      <tr table-row th="Omfang vitnemål" td="fag.data.omfangvitnemaal" ng-if="fag.data.omfangvitnemaal"></tr>
+      <tr table-row th="Omfang totalt" td="fag.data.omfangbrutto" ng-if="fag.data.omfangbrutto"></tr>
+      <tr table-row th="Omfang kompetansemaalsett" td="fag.data.omfangkompetansemaalsett" ng-if="fag.data.omfangkompetansemaalsett"></tr>
+      <tr table-row th="Første semester" td="fag.data.naargisdetundervisning.foerstesemester.beskrivelse | pickLanguage:nob" ng-if="fag.data.naargisdetundervisning.foerstesemester"></tr>
+      <tr table-row th="Første semester" td="fag.data.naargisdetundervisning.sistesemester.beskrivelse | pickLanguage:nob" ng-if="fag.data.naargisdetundervisning.sistesemester"></tr>
+      <tr table-row th="Eksamensordning" td="fag.data.vurderingelevlaerling.typeeksamensordning.beskrivelse | pickLanguage:nob" ng-if="fag.data.vurderingelevlaerling.typeeksamensordning"></tr>
+      <tr table-row th="Data-url" td="fag.data.urldata"></tr>
     </table>
 </div>
 
