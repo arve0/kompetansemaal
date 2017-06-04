@@ -7,17 +7,17 @@
     .filter('isNotEqual', function(){return isNotEqual;})
     .filter('pickLanguage', function(){return pickLanguage;});
 
-  function pickLanguage(obj, lang){
-    if (!angular.isObject(obj)) { return obj; }
+  function pickLanguage(arr, lang){
+    if (!angular.isArray(arr)) { return arr; }
 
-    // no elements
-    if (lang in obj) {
-      return obj[lang];
-    } else if ('default' in obj) {
-      return obj['default'];
-    } else {
-      return obj;
+    var prefix = 'http://data.udir.no/kl06/'
+
+    for (var obj of arr) {
+      if (prefix + lang === obj.spraak) {
+        return obj.verdi;
+      }
     }
+    return arr[0].verdi;
   }
 
 
