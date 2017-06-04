@@ -11,7 +11,7 @@
             <th>ID</th>
             <th>Kompetansemål</th>
           </tr>
-          <tr ng-repeat="maal in kms.kompetansemaal | filter:{ 'rekkefoelge': omr.rekkefoelge }">
+          <tr ng-repeat="maal in kms.kompetansemaal | kmFilter:omr.kode">
             <td><copy text='maal.kode'></copy></td>
             <td>{{maal.tittel}}</td>
           </tr>

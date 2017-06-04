@@ -3,7 +3,8 @@
 
   angular
     .module('kompetansemaal')
-    .controller('LaereplanController', LaereplanController);
+    .controller('LaereplanController', LaereplanController)
+    .filter('kmFilter', function () { return kmFilter });
 
   /** @ngInject */
   function LaereplanController($stateParams, udir) {
@@ -15,5 +16,10 @@
     });
 
   }
+
+  function kmFilter (arr, kode) {
+    return arr.filter(km => km['tilhoererhovedomraade'].kode === kode)
+  }
+
 
 })();
