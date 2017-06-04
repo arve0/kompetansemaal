@@ -12,7 +12,8 @@
 
     var prefix = 'http://data.udir.no/kl06/'
 
-    for (var obj of arr) {
+    for (var i = 0; i < arr.length; i++) {
+      var obj = arr[i]
       if (prefix + lang === obj.spraak) {
         return obj.verdi;
       }
