@@ -1,5 +1,5 @@
 (function() {
-  'use strict';
+  var dpd = dpd || {};  // gracefully fail until we have deployd server live
 
   angular
     .module('kompetansemaal')
