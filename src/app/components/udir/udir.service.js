@@ -51,14 +51,18 @@
         var query = $odata.Predicate.or(predicates);
         return R.odata()
                 .filter('Status', 'http://data.udir.no/kl06/status_publisert')
-                .filter(query);
+                .filter(query)
+                .transformUrl(function(url){
+                  return url + '&lang=nob'
+                });
+;
       };
 
       return R;
     }
 
     function getREST(endpoint) {
-      return $http.get(baseUrl + endpoint, {cache: true})
+      return $http.get(baseUrl + endpoint + '?lang=nob', {cache: true})
         .then(function(response){
           var data = replaceKeyValueArrays(response.data);
           data = rmDashesFromProperties(data);
