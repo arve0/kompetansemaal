@@ -35,7 +35,7 @@ npm install
 bower install
 gulp serve  # dev build with watch
 gulp  # dist build
-gulp deploy  # push to gh-pages (working?)
+git checkout gh-pages && sh deploy.sh && git checkout master  # push to gh-pages
 ```
 
 ## Sponsor
