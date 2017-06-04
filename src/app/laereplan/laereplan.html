@@ -2,16 +2,16 @@
 <div class="container">
 
   <div>
-    <div ng-repeat="kms in lp.data.kompetansemaalsett">
+    <div ng-repeat="kms in lp.data.kompetansemaalkapittel.kompetansemaalsett">
       <h2>{{kms.etterfag[0].tittel | pickLanguage:nob}}</h2>
-      <div ng-repeat="(omrIndex, omr) in kms.hovedomraader">
-        <h3>{{omr.tittel | pickLanguage:nob}}</h3>
+      <div ng-repeat="omr in kms.hovedomraaderikontekstavkompetansemaalsett">
+        <h3>{{omr.hovedomraadeverdierunderkompetansemaalsett.tittel | pickLanguage:nob}}</h3>
         <table class="table table-striped table-nonfluid">
           <tr>
             <th>ID</th>
             <th>Kompetansemål</th>
           </tr>
-          <tr ng-repeat="maal in omr.kompetansemaal">
+          <tr ng-repeat="maal in kms.kompetansemaal | filter:{ 'rekkefoelge': omr.rekkefoelge }">
             <td><copy text='maal.kode'></copy></td>
             <td>{{maal.tittel}}</td>
           </tr>
