@@ -26,6 +26,17 @@ seksjonen om odata i [brukermanualen][grep manual]. Dataressursen er
 [udir service]: src/app/components/udir/udir.service.js
 [angular service]: https://docs.angularjs.org/guide/services
 
+## Utvikle
+
+```sh
+git clone https://github.com/arve0/kompetansemaal
+cd kompetansemaal
+npm install
+bower install
+gulp serve  # dev build with watch
+gulp  # dist build
+gulp deploy  # push to gh-pages (working?)
+```
 
 ## Sponsor
 Dette er en del av sommerarbeidet i Kodeklubben, sponset av [Sparebank 1 SMN]
