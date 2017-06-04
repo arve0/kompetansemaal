@@ -18,7 +18,9 @@
   }
 
   function kmFilter (arr, kode) {
-    return arr.filter(km => km['tilhoererhovedomraade'].kode === kode)
+    return arr.filter(function (km) {
+      return km['tilhoererhovedomraade'].kode === kode
+    })
   }
 
 
