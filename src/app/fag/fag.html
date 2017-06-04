@@ -7,7 +7,7 @@
         <th>Kode</th>
         <td><copy text="fag.data.kode"></copy></td>
       </tr>
-      <tr table-row th="Tittel" td="fag.data.tittel.nob"></tr>
+      <tr table-row th="Tittel" td="fag.data.tittel | pickLanguage:nob"></tr>
       <tr table-row th="Kortform" td="fag.data.kortform | pickLanguage:nob" ng-if="fag.data.kortform.nob && ([fag.data.tittel, fag.data.kortform] | isNotEqual)"></tr>
       <tr>
         <th>Læreplan<span ng-if="fag.data.opplaeringsfag.length > 1">er</span></th>
@@ -23,8 +23,8 @@
         </td>
       </tr>
       <tr table-row th="Sist endret" td="fag.data.sistendret | pickLanguage:nob"></tr>
-      <tr table-row th="Fagtype" td="fag.data.fagtype.beskrivelse | pickLanguage:nob"></tr>
-      <tr table-row th="Opplæringsnivå" td="fag.data.opplaeringsnivaa.beskrivelse | pickLanguage:nob"></tr>
+      <tr table-row th="Fagtype" td="fag.data.fagtype.tittel"></tr>
+      <tr table-row th="Opplæringsnivå" td="fag.data.opplaeringsnivaa.tittel | pickLanguage:nob"></tr>
       <tr table-row th="Omfang totalt" td="fag.data.omfangtotalt" ng-if="fag.data.omfangtotalt"></tr>
       <tr table-row th="Omfang vitnemål" td="fag.data.omfangvitnemaal" ng-if="fag.data.omfangvitnemaal"></tr>
       <tr table-row th="Omfang totalt" td="fag.data.omfangbrutto" ng-if="fag.data.omfangbrutto"></tr>
