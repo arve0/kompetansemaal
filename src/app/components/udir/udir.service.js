@@ -50,7 +50,7 @@
 
         var query = $odata.Predicate.or(predicates);
         return R.odata()
-                .filter('Status', 'http://psi.udir.no/ontologi/status/publisert')
+                .filter('Status', 'http://data.udir.no/kl06/status_publisert')
                 .filter(query);
       };
 
